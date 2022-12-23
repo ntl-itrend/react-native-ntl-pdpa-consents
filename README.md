@@ -2,7 +2,7 @@
 
 Handle user’s PDPA consents for NTL app.
 
-## Installation
+<!-- ## Installation
 
 ```sh
 npm install react-native-ntl-pdpa-consents
@@ -16,7 +16,7 @@ import { multiply } from 'react-native-ntl-pdpa-consents';
 // ...
 
 const result = await multiply(3, 7);
-```
+``` -->
 
 ## Contributing
 
