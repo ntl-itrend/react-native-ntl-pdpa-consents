@@ -1,24 +1,76 @@
 package com.ntlpdpaconsents
 
+import com.facebook.react.bridge.Callback
 import com.facebook.react.bridge.ReactApplicationContext
+import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
-import com.facebook.react.bridge.Promise
+import com.google.firebase.analytics.FirebaseAnalytics
+import java.util.EnumMap
+//import java.util.Map
 
 class NtlPdpaConsentsModule internal constructor(context: ReactApplicationContext) :
   NtlPdpaConsentsSpec(context) {
 
-  override fun getName(): String {
-    return NAME
-  }
+    private val firebaseAnalytics: FirebaseAnalytics
 
-  // Example method
-  // See https://reactnative.dev/docs/native-modules-android
-  @ReactMethod
-  override fun multiply(a: Double, b: Double, promise: Promise) {
-    promise.resolve(a * b)
-  }
+    //constructor
+    init {
+      firebaseAnalytics = FirebaseAnalytics.getInstance(reactApplicationContext)
+    }
 
-  companion object {
-    const val NAME = "NtlPdpaConsents"
-  }
+    override fun getName(): String {
+      return NAME
+    }
+
+    @ReactMethod
+    override fun setGrantAnalyticsStorage(cb: Callback) {
+        try {
+            val consentMap = EnumMap<FirebaseAnalytics.ConsentType, FirebaseAnalytics.ConsentStatus>(FirebaseAnalytics.ConsentType::class.java)
+            consentMap[FirebaseAnalytics.ConsentType.ANALYTICS_STORAGE] = FirebaseAnalytics.ConsentStatus.GRANTED
+            firebaseAnalytics.setConsent(consentMap)
+            cb.invoke(null, "analytics_storage granted")
+        } catch (e: Exception) {
+            cb.invoke(e.toString(), null)
+        }
+    }
+
+    @ReactMethod
+    override fun setDenyAnalyticsStorage(cb: Callback) {
+        try {
+            //val consentMap = EnumMap<FirebaseAnalytics.ConsentType, FirebaseAnalytics.ConsentStatus>(FirebaseAnalytics.ConsentType::class.java)
+            //consentMap[FirebaseAnalytics.ConsentType.ANALYTICS_STORAGE] = FirebaseAnalytics.ConsentStatus.DENIED
+            //firebaseAnalytics.setConsent(consentMap)
+            cb.invoke(null, "analytics_storage denied")
+        } catch (e: Exception) {
+            cb.invoke(e.toString(), null)
+        }
+    }
+
+    @ReactMethod
+    override fun setGrantAdStorage(cb: Callback) {
+        try {
+            //val consentMap = EnumMap<FirebaseAnalytics.ConsentType, FirebaseAnalytics.ConsentStatus>(FirebaseAnalytics.ConsentType::class.java)
+            //consentMap[FirebaseAnalytics.ConsentType.AD_STORAGE] = FirebaseAnalytics.ConsentStatus.GRANTED
+            //firebaseAnalytics.setConsent(consentMap)
+            cb.invoke(null, "ad_storage granted")
+        } catch (e: Exception) {
+            cb.invoke(e.toString(), null)
+        }
+    }
+
+    @ReactMethod
+    override fun setDenyAdStorage(cb: Callback) {
+        try {
+            //val consentMap = EnumMap<FirebaseAnalytics.ConsentType, FirebaseAnalytics.ConsentStatus>(FirebaseAnalytics.ConsentType::class.java)
+            //consentMap[FirebaseAnalytics.ConsentType.AD_STORAGE] = FirebaseAnalytics.ConsentStatus.DENIED
+            //firebaseAnalytics.setConsent(consentMap)
+            cb.invoke(null, "ad_storage denied")
+        } catch (e: Exception) {
+            cb.invoke(e.toString(), null)
+        }
+    }
+
+    companion object {
+      const val NAME = "NtlPdpaConsents"
+    }
 }

@@ -1,18 +1,18 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-ntl-pdpa-consents';
+// import { multiply } from 'react-native-ntl-pdpa-consents';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
+  // const [result, setResult] = React.useState<number | undefined>();
 
   React.useEffect(() => {
-    multiply(3, 7).then(setResult);
+    // multiply(3, 7).then(setResult);
   }, []);
 
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Text>Result: {'result'}</Text>
     </View>
   );
 }

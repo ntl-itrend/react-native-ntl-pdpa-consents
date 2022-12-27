@@ -1,4 +1,5 @@
 import { NativeModules, Platform } from 'react-native';
+import type { Callback } from './NativeNtlPdpaConsents';
 
 const LINKING_ERROR =
   `The package 'react-native-ntl-pdpa-consents' doesn't seem to be linked. Make sure: \n\n` +
@@ -24,6 +25,15 @@ const NtlPdpaConsents = NtlPdpaConsentsModule
       }
     );
 
-export function multiply(a: number, b: number): Promise<number> {
-  return NtlPdpaConsents.multiply(a, b);
+export function setGrantAnalyticsStorage(callback?: Callback): void {
+  return NtlPdpaConsents.setGrantAnalyticsStorage(callback);
+}
+export function setDenyAnalyticsStorage(callback?: Callback): void {
+  return NtlPdpaConsents.setDenyAnalyticsStorage(callback);
+}
+export function setGrantAdStorage(callback?: Callback): void {
+  return NtlPdpaConsents.setGrantAdStorage(callback);
+}
+export function setDenyAdStorage(callback?: Callback): void {
+  return NtlPdpaConsents.setDenyAdStorage(callback);
 }
