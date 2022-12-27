@@ -9,7 +9,7 @@ import java.util.HashMap
 
 class NtlPdpaConsentsPackage : TurboReactPackage() {
   override fun getModule(name: String, reactContext: ReactApplicationContext): NativeModule? {
-    return if (name == NtlPdpaConsentsModule.NAME) {
+    return if (name === NtlPdpaConsentsModule.NAME) {
       NtlPdpaConsentsModule(reactContext)
     } else {
       null
